@@ -3,9 +3,10 @@ using System.Text;
 
 namespace Library
 {
-    public class AppointmentService
+    public class AppointmentService //concentra todo en la clase appointment, por ejemplo el telefono deberia ser una clase persona o paciente y doctor.
     {
-        public static string CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
+
+        public static string CreateAppointment(string name, string id, DateTime date, string appoinmentPlace, Doctor doctor, Paciente paciente)
         {
             StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
             Boolean isValid = true;
@@ -22,22 +23,9 @@ namespace Library
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(phoneNumber))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'phone number' is required\n");
-                isValid = false;
-            }
-
             if (string.IsNullOrEmpty(appoinmentPlace))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'appoinment place' is required\n");
-                isValid = false;
-            }
-
-
-            if (string.IsNullOrEmpty(doctorName))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'doctor name' is required\n");
                 isValid = false;
             }
 
@@ -48,6 +36,5 @@ namespace Library
 
             return stringBuilder.ToString();
         }
-
     }
 }
